@@ -10,4 +10,19 @@ interface ApiResponse {
   error: Error | undefined;
 }
 
-export type { ApiResponse, ApiCall };
+interface Employee {
+  firstName: string;
+  lastName: string;
+  contactNumber: string;
+  emailAddress: string;
+  dateOfBirth: Date;
+  streetAddress: string;
+  city: string;
+  postalCode: number;
+  country: string;
+  skill: string;
+  yrsExp: string;
+  seniorityRating: string;
+}
+
+export type { ApiResponse, ApiCall, Employee };

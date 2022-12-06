@@ -1,16 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { router } from './router';
+import { StoreProvider } from 'easy-peasy';
 import { RouterProvider } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
+import { router } from './router';
 import { theme } from './theme';
+import { store } from './store';
 import { GlobalStyles } from './theme/global-styles';
+import SidePanel from './components/sidePanel';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <GlobalStyles />
-      <RouterProvider router={router} />
-    </ThemeProvider>
+    <StoreProvider store={store}>
+      <ThemeProvider theme={theme}>
+        <GlobalStyles />
+        <SidePanel />
+        <RouterProvider router={router} />
+      </ThemeProvider>
+    </StoreProvider>
   </React.StrictMode>
 );
