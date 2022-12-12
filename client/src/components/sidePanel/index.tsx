@@ -19,6 +19,8 @@ function SidePanel(_props: SidePanelProps): JSX.Element {
 
   const handleFormSubmit = (values: FormInputs) => {
     // send to BE
+
+    console.log({ values });
   };
 
   return (

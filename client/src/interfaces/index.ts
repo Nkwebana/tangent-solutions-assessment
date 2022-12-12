@@ -12,7 +12,7 @@ import { ButtonProps, StyledButtonProps } from './components/button';
 import { SidePanelProps, StyledSidePanelProps } from './components/sidePanel';
 import { StoreModel } from './store';
 import { FormProps, FormInputs } from './components/form';
-import { SkillsManagerProps } from './components/skillsManager';
+import { SkillsManagerProps, NewSkill } from './components/skillsManager';
 
 export type {
   SkillsManagerProps,
@@ -32,4 +32,5 @@ export type {
   StyledSidePanelProps,
   Skill,
   SkillIndex,
+  NewSkill,
 };

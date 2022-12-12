@@ -15,7 +15,7 @@ enum SeniorityRating {
 
 enum SkillFormInput {
   Name = 'name',
-  YrsExpr = 'yrsExpr',
+  YearsExp = 'yearsExp',
   SeniorityRating = 'seniorityRating',
 }
 

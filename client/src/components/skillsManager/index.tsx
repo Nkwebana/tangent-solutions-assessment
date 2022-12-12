@@ -5,64 +5,52 @@
  */
 
 import React, { useEffect } from 'react';
-import { SkillsManagerProps, Skill } from '../../interfaces';
+import { useFieldArray } from 'react-hook-form';
+import { SkillsManagerProps, FormInputs } from '../../interfaces';
 import {
   StyledSkillsManager,
   StyledRow,
-  StyledHeadingItem,
-  StyledSkillNameWrapper,
   StyledSkillsTable,
 } from './styledComponents';
 import Button from '../button';
-import {
-  ButtonVariant,
-  FormFieldType,
-  SeniorityRating,
-  SkillFormInput,
-} from '../../enums';
+import { ButtonVariant, SeniorityRating } from '../../enums';
 import { ReactComponent as PlusIcon } from '../../assets/svg/icon-plus.svg';
 
-function SkillsManager({
-  skills,
-  onSkillAdd,
-  onSkillChange,
-  onSkillDelete,
-}: SkillsManagerProps): JSX.Element {
+function SkillsManager({ control, register }: SkillsManagerProps): JSX.Element {
+  const { fields, append, remove } = useFieldArray<FormInputs>({
+    control, // control props comes from useForm (optional: if you are using FormContext)
+    name: 'skills', // unique name for your Field Array
+  });
   return (
     <StyledSkillsManager>
       <StyledSkillsTable>
-        <tr>
-          <th>Skill</th>
-          <th>Yrs Exp.</th>
-          <th>Seniority rating</th>
-        </tr>
-        {skills.map(
-          ({ name, seniorityRating, yearsExp }: Skill, index: number) => (
-            <StyledRow key={name}>
+        <tbody>
+          <tr>
+            <th>Skill</th>
+            <th>Yrs Exp.</th>
+            <th>Seniority rating</th>
+          </tr>
+          {fields.map((field, index: number) => (
+            <StyledRow key={field.id}>
               <td>
                 <input
-                  defaultValue={name}
-                  type={FormFieldType.Text}
-                  onChange={({ target: { value } }) =>
-                    onSkillChange(value, index, SkillFormInput.Name)
-                  }
+                  placeholder="Skill"
+                  {...register(`skills.${index}.name`, { required: true })}
                 />
               </td>
               <td>
                 <input
-                  defaultValue={yearsExp}
-                  type={FormFieldType.Number}
-                  onChange={({ target: { value } }) =>
-                    onSkillChange(value, index, SkillFormInput.YrsExpr)
-                  }
+                  type="number"
+                  placeholder="Exp"
+                  {...register(`skills.${index}.yearsExp`, { required: true })}
                 />
               </td>
               <td>
                 <select
-                  defaultValue={seniorityRating}
-                  onChange={({ target: { value } }) =>
-                    onSkillChange(value, index, SkillFormInput.SeniorityRating)
-                  }
+                  placeholder="Rating"
+                  {...register(`skills.${index}.seniorityRating`, {
+                    required: true,
+                  })}
                 >
                   <option value={SeniorityRating.Beginner}>
                     {SeniorityRating.Beginner}
@@ -70,22 +58,31 @@ function SkillsManager({
                   <option value={SeniorityRating.Junior}>
                     {SeniorityRating.Junior}
                   </option>
+                  <option value={SeniorityRating.Intermediate}>
+                    {SeniorityRating.Intermediate}
+                  </option>
                   <option value={SeniorityRating.Senior}>
                     {SeniorityRating.Senior}
                   </option>
                 </select>
-                {/* <Button
-                  title="delete"
-                  onClick={() => onSkillDelete(index)}
+                <Button
+                  title="dlt"
+                  onClick={() => remove(index)}
                   variant={ButtonVariant.SecondaryAction}
-                /> */}
+                />
               </td>
             </StyledRow>
-          )
-        )}
+          ))}
+        </tbody>
       </StyledSkillsTable>
       <Button
-        onClick={onSkillAdd}
+        onClick={() =>
+          append({
+            name: '',
+            seniorityRating: SeniorityRating.Beginner,
+            yearsExp: 0,
+          })
+        }
         title="Add New Item"
         icon={<PlusIcon />}
         variant={ButtonVariant.SecondaryAction}
@@ -95,3 +92,25 @@ function SkillsManager({
 }
 
 export default SkillsManager;
+
+// <td>
+//   <Input control={control} type={FormFieldType.Number} />
+// </td>
+// <td>
+//   <select>
+//     <option value={SeniorityRating.Beginner}>
+//       {SeniorityRating.Beginner}
+//     </option>
+//     <option value={SeniorityRating.Junior}>
+//       {SeniorityRating.Junior}
+//     </option>
+//     <option value={SeniorityRating.Senior}>
+//       {SeniorityRating.Senior}
+//     </option>
+//   </select>
+//   {/* <Button
+//   title="delete"
+//   onClick={() => onSkillDelete(index)}
+//   variant={ButtonVariant.SecondaryAction}
+// /> */}
+// </td>

@@ -18,7 +18,6 @@ import {
   StyledPositiveActionsWrapper,
 } from './styledComponents';
 import { emailValidation } from '../../utils/formValidation';
-import { useSkills } from '../../hooks';
 
 function Form({ onSubmit, initialValues }: FormProps): JSX.Element {
   const {
@@ -26,16 +25,17 @@ function Form({ onSubmit, initialValues }: FormProps): JSX.Element {
     control,
     formState: { isValid },
     reset,
+    register,
   } = useForm<FormInputs>({
     defaultValues: {},
     mode: 'all',
   });
   const methods = useForm();
 
-  const { skills, setDefaultSkills, addSkill, deleteSkill, onSkillChange } =
-    useSkills();
-
-  const handleFormSubmit: SubmitHandler<FormInputs> = (data) => onSubmit(data);
+  const handleFormSubmit: SubmitHandler<FormInputs> = (data) => {
+    console.log({ data });
+    onSubmit(data);
+  };
 
   useEffect(() => {
     // setDefaultSkills() // set these from initial values
@@ -106,7 +106,7 @@ function Form({ onSubmit, initialValues }: FormProps): JSX.Element {
               control={control}
               rules={{ required: true }}
               label="City"
-              type={FormFieldType.Email}
+              type={FormFieldType.Text}
             />
             <Input
               name="postCode"
@@ -120,18 +120,13 @@ function Form({ onSubmit, initialValues }: FormProps): JSX.Element {
               control={control}
               rules={{ required: true }}
               label="Country"
-              type={FormFieldType.Email}
+              type={FormFieldType.Text}
             />
           </StyledInlineFieldWrapper>
         </section>
         <section>
           <p>Skills</p>
-          <SkillsManager
-            onSkillChange={onSkillChange}
-            onSkillAdd={addSkill}
-            skills={skills}
-            onSkillDelete={deleteSkill}
-          />
+          <SkillsManager control={control} register={register} />
           <StyledActionsWrapper>
             <Button
               title="Discard"

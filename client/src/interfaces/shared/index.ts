@@ -22,9 +22,6 @@ interface Employee {
   city: string;
   postalCode: number;
   country: string;
-  skill: string;
-  yrsExp: string;
-  seniorityRating: string;
 }
 
 interface FormField extends UseControllerProps {

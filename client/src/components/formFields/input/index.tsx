@@ -20,17 +20,17 @@ const Input: FC<FormField> = (props) => {
     fieldState: { error },
   } = useController(props);
 
-  useEffect(() => {
-    console.log(error);
-  }, [error]);
-
   const { label, placeholder, type } = props;
+
+  useEffect(() => {
+    console.log({ error });
+  }, [error]);
 
   return (
     <StyledInputWrapper>
       <StyledInputLabel>{label}</StyledInputLabel>
       <StyledInput {...field} placeholder={placeholder} type={type} />
-      {error && error?.message === 'required' && (
+      {error && error?.type === 'required' && (
         <StyledErrorIndicator>This field is required</StyledErrorIndicator>
       )}
       {error && error?.type === 'validate' && (

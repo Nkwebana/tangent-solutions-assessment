@@ -1,16 +1,18 @@
 import { useState, useEffect } from 'react';
 import { SeniorityRating, SkillFormInput } from '../../enums';
-import { Skill, SkillIndex } from '../../interfaces';
-
-type B = keyof Skill;
+import { NewSkill, Skill } from '../../interfaces';
 
 function useSkills() {
   const [skills, setSkills] = useState<Skill[]>([
-    { name: 'Coding', seniorityRating: SeniorityRating.Beginner, yearsExp: 5 },
+    { name: '', seniorityRating: SeniorityRating.Beginner, yearsExp: 0 },
   ]);
 
   const addSkill = () => {
-    skills?.push();
+    skills?.push({
+      name: '',
+      seniorityRating: SeniorityRating.Beginner,
+      yearsExp: 0,
+    });
     setSkills([...skills]);
   };
 
@@ -20,12 +22,8 @@ function useSkills() {
     setSkills([...skillWithoutSkillToBeDeleted]);
   };
 
-  const onSkillChange = (
-    value: string,
-    skillToEditIndex: number,
-    fieldName: SkillFormInput
-  ) => {
-    skills[skillToEditIndex as keyof Skill[]][fieldName] = value;
+  const onSkillChange = ({ value, skillToEditIndex, fieldName }: NewSkill) => {
+    (skills[skillToEditIndex][fieldName] as string | number) = value;
 
     setSkills([...skills]);
   };

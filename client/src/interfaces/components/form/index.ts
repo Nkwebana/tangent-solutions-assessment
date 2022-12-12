@@ -1,6 +1,8 @@
-import { Employee } from '../../shared';
+import { Employee, Skill } from '../../shared';
 
-interface FormInputs extends Employee {}
+interface FormInputs extends Employee {
+  skills: Skill[];
+}
 
 interface FormProps {
   onSubmit: (formValues: FormInputs) => void;
