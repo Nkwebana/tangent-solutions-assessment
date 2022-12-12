@@ -1,3 +1,4 @@
 import { ButtonVariant } from './button';
+import { FormFieldType, SeniorityRating, SkillFormInput } from './form';
 
-export { ButtonVariant };
+export { ButtonVariant, FormFieldType, SeniorityRating, SkillFormInput };

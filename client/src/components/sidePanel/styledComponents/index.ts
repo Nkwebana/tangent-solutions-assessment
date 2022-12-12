@@ -3,6 +3,7 @@ import { calculateRem } from '../../../utils';
 import { StyledSidePanelProps } from '../../../interfaces';
 
 const StyledSidePanel = styled.div<StyledSidePanelProps>`
+  border-radius: 60px;
   width: ${calculateRem(550)};
   position: fixed;
   left: ${({ isSidePanelOpen }) =>

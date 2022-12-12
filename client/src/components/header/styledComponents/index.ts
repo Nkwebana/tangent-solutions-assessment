@@ -3,14 +3,15 @@ import { calculateRem } from '../../../utils';
 
 const StyledHeader = styled.div`
   margin-bottom: ${calculateRem(50)};
-  margin-top: ${calculateRem(50)};
+  padding: 0 ${calculateRem(50)};
 
   h1 {
     font-size: ${calculateRem(50)};
+    margin: 0;
   }
 
   p {
-    margin-top: ${calculateRem(20)};
+    margin-top: ${calculateRem(10)};
     font-family: ${({
       theme: {
         fonts: { spartanRegular },

@@ -1,4 +1,6 @@
 import { AxiosRequestConfig } from 'axios';
+import { UseControllerProps, Control } from 'react-hook-form';
+import { FormFieldType, SeniorityRating } from '../../enums';
 
 interface ApiCall extends AxiosRequestConfig {
   callBack?: () => void;
@@ -25,4 +27,23 @@ interface Employee {
   seniorityRating: string;
 }
 
-export type { ApiResponse, ApiCall, Employee };
+interface FormField extends UseControllerProps {
+  placeholder?: string;
+  label: string;
+  type: FormFieldType;
+  control: Control<any>;
+  defaultValue?: string;
+  onTextChange?: (value: string) => void;
+}
+
+interface SkillIndex {
+  [key: number]: Skill;
+}
+
+interface Skill {
+  name: string;
+  yearsExp: number;
+  seniorityRating: SeniorityRating;
+}
+
+export type { ApiResponse, ApiCall, Employee, FormField, Skill, SkillIndex };

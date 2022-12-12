@@ -1,13 +1,24 @@
-import { ApiCall, ApiResponse, Employee } from './shared';
+import {
+  ApiCall,
+  ApiResponse,
+  Employee,
+  FormField,
+  Skill,
+  SkillIndex,
+} from './shared';
 import { HeaderProps } from './components/header';
 import { FilterProps, FilterOption } from './components/filter';
 import { ButtonProps, StyledButtonProps } from './components/button';
 import { SidePanelProps, StyledSidePanelProps } from './components/sidePanel';
 import { StoreModel } from './store';
-import { FormProps } from './components/form';
+import { FormProps, FormInputs } from './components/form';
+import { SkillsManagerProps } from './components/skillsManager';
 
 export type {
+  SkillsManagerProps,
   FormProps,
+  FormField,
+  FormInputs,
   ButtonProps,
   FilterProps,
   HeaderProps,
@@ -19,4 +30,6 @@ export type {
   StoreModel,
   SidePanelProps,
   StyledSidePanelProps,
+  Skill,
+  SkillIndex,
 };

@@ -38,6 +38,28 @@ const GlobalStyles = createGlobalStyle`
     cursor: pointer;
     font-weight: 300;
   }
+
+    input, select {
+    border: none;
+    border-radius: ${calculateRem(5)};
+    padding: ${calculateRem(15)};
+    width: 100%;
+    outline: none;
+    box-sizing: border-box;
+    background-color: ${({
+      theme: {
+        colors: { secondaryBackgroundColor },
+      },
+    }) => secondaryBackgroundColor};
+    color: ${({
+      theme: {
+        colors: { light },
+      },
+    }) => light};
+    font-size: ${calculateRem(14)};
+  }
+
+
   `;
 
 const StyledApplicationWrapper = styled.div`

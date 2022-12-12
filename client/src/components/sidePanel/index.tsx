@@ -6,8 +6,9 @@
 
 import React, { useEffect } from 'react';
 import { useStoreState } from '../../hooks';
-import { SidePanelProps } from '../../interfaces';
+import { FormInputs, SidePanelProps } from '../../interfaces';
 import { StyledSidePanel } from './styledComponents';
+import Form from '../form';
 
 function SidePanel(_props: SidePanelProps): JSX.Element {
   const {
@@ -16,7 +17,15 @@ function SidePanel(_props: SidePanelProps): JSX.Element {
     },
   } = useStoreState((state) => state);
 
-  return <StyledSidePanel isSidePanelOpen={isOpen}></StyledSidePanel>;
+  const handleFormSubmit = (values: FormInputs) => {
+    // send to BE
+  };
+
+  return (
+    <StyledSidePanel isSidePanelOpen={isOpen}>
+      <Form onSubmit={handleFormSubmit} />
+    </StyledSidePanel>
+  );
 }
 
 export default SidePanel;
