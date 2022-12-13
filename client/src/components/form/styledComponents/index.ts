@@ -16,7 +16,7 @@ const StyledForm = styled.form`
         },
       }) => primary};
       font-weight: 500;
-      margin-bottom: ${calculateRem(30)};
+      margin-bottom: ${calculateRem(20)};
     }
   }
 `;

@@ -17,25 +17,18 @@ import {
   StyledActionsWrapper,
   StyledPositiveActionsWrapper,
 } from './styledComponents';
+import { StyledButtonIconWrapper } from '../../theme/global-styles';
+import { ReactComponent as PlusIcon } from '../../assets/svg/icon-plus.svg';
 import { emailValidation } from '../../utils/formValidation';
 
-function Form({ onSubmit, initialValues }: FormProps): JSX.Element {
-  const {
-    handleSubmit,
-    control,
-    formState: { isValid },
-    reset,
-    register,
-  } = useForm<FormInputs>({
-    defaultValues: {},
+function Form({ onSubmit, defaultValues }: FormProps): JSX.Element {
+  const { handleSubmit, control, reset, register } = useForm<FormInputs>({
+    defaultValues,
     mode: 'all',
   });
   const methods = useForm();
 
-  const handleFormSubmit: SubmitHandler<FormInputs> = (data) => {
-    console.log({ data });
-    onSubmit(data);
-  };
+  const handleFormSubmit: SubmitHandler<FormInputs> = (data) => onSubmit(data);
 
   useEffect(() => {
     // setDefaultSkills() // set these from initial values
@@ -135,15 +128,15 @@ function Form({ onSubmit, initialValues }: FormProps): JSX.Element {
             />
             <StyledPositiveActionsWrapper>
               <Button
-                title="Save as Draft"
-                onClick={() => {}}
-                variant={ButtonVariant.SecondaryAction}
-              />
-              <Button
-                title="Save & Send"
+                title="Save and Add Employee"
                 type="submit"
                 onClick={() => {}}
                 variant={ButtonVariant.PrimaryAction}
+                icon={
+                  <StyledButtonIconWrapper>
+                    <PlusIcon />
+                  </StyledButtonIconWrapper>
+                }
               />
             </StyledPositiveActionsWrapper>
           </StyledActionsWrapper>

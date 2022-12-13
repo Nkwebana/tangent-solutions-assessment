@@ -1,11 +1,11 @@
 import React from 'react';
 import { createBrowserRouter } from 'react-router-dom';
-import Applicants from '../pages/applicants';
+import Employees from '../pages/employees';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Applicants />,
+    element: <Employees />,
   },
 ]);
 

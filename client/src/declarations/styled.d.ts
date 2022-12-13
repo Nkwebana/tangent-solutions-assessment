@@ -14,11 +14,13 @@ declare module 'styled-components' {
       deleteAction: string;
       deleteActionTwo: string;
       secondaryAction: string;
+      white: string;
       mainBackgroundColor: string;
       secondaryBackgroundColor: string;
       light: string;
       success: string;
       warning: string;
+      gray: string;
     };
     fonts: {
       spartanRegular: string;

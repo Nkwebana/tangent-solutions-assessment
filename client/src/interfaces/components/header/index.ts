@@ -1,9 +1,9 @@
 import { FilterOption } from '../filter';
 
 interface HeaderProps {
-  numberOfApplicants: number;
+  numberOfEmployees: number;
   onFilterChanged: () => void;
-  onNewApplicant: () => void;
+  onNewEmployee: () => void;
   filterOptions: FilterOption[];
 }
 

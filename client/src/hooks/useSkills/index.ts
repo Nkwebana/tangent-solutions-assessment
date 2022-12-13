@@ -31,10 +31,6 @@ function useSkills() {
   const setDefaultSkills = (skillsFromServer: Skill[]) =>
     setSkills(skillsFromServer);
 
-  useEffect(() => {
-    console.log(skills);
-  }, [skills]);
-
   return {
     skills,
     addSkill,

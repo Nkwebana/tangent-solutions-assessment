@@ -22,10 +22,6 @@ const Input: FC<FormField> = (props) => {
 
   const { label, placeholder, type } = props;
 
-  useEffect(() => {
-    console.log({ error });
-  }, [error]);
-
   return (
     <StyledInputWrapper>
       <StyledInputLabel>{label}</StyledInputLabel>

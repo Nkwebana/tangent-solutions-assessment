@@ -1,13 +1,17 @@
-import { createStore, action } from 'easy-peasy';
-import { StoreModel, Employee } from '../interfaces';
+import { createStore, action, persist } from 'easy-peasy';
+import { StoreModel, IEmployee } from '../interfaces';
 
 const store = createStore<StoreModel>({
-  employeeManagement: {
-    employee: undefined,
-    addEmployee: action((state, payload: Employee) => {
-      state.employee = payload;
+  employeeManagement: persist({
+    employees: [],
+    activeEmployee: undefined,
+    setActiveEmployee: action((state, payload: IEmployee) => {
+      state.activeEmployee = payload;
     }),
-  },
+    addEmployee: action((state, payload: IEmployee) => {
+      state.employees.push(payload);
+    }),
+  }),
   ui: {
     sideBar: {
       isOpen: false,

@@ -12,7 +12,8 @@ interface ApiResponse {
   error: Error | undefined;
 }
 
-interface Employee {
+interface IEmployee {
+  id: string;
   firstName: string;
   lastName: string;
   contactNumber: string;
@@ -22,11 +23,12 @@ interface Employee {
   city: string;
   postalCode: number;
   country: string;
+  skills: Skill[];
 }
 
 interface FormField extends UseControllerProps {
   placeholder?: string;
-  label: string;
+  label?: string;
   type: FormFieldType;
   control: Control<any>;
   defaultValue?: string;
@@ -43,4 +45,4 @@ interface Skill {
   seniorityRating: SeniorityRating;
 }
 
-export type { ApiResponse, ApiCall, Employee, FormField, Skill, SkillIndex };
+export type { ApiResponse, ApiCall, IEmployee, FormField, Skill, SkillIndex };

@@ -1,7 +1,7 @@
 import {
   ApiCall,
   ApiResponse,
-  Employee,
+  IEmployee,
   FormField,
   Skill,
   SkillIndex,
@@ -13,8 +13,10 @@ import { SidePanelProps, StyledSidePanelProps } from './components/sidePanel';
 import { StoreModel } from './store';
 import { FormProps, FormInputs } from './components/form';
 import { SkillsManagerProps, NewSkill } from './components/skillsManager';
+import { EmployeeProps } from './components/employee';
 
 export type {
+  EmployeeProps,
   SkillsManagerProps,
   FormProps,
   FormField,
@@ -26,7 +28,7 @@ export type {
   ApiResponse,
   StyledButtonProps,
   FilterOption,
-  Employee,
+  IEmployee,
   StoreModel,
   SidePanelProps,
   StyledSidePanelProps,

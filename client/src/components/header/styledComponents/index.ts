@@ -37,24 +37,9 @@ const StyledActionsWrapper = styled.div`
   align-items: center;
 `;
 
-const StyledButtonIconWrapper = styled.div`
-  width: ${calculateRem(30)};
-  height: ${calculateRem(30)};
-  background-color: ${({
-    theme: {
-      colors: { light },
-    },
-  }) => light};
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
 export {
   StyledHeader,
   StyledTitleWrapper,
   StyledActionsWrapper,
-  StyledButtonIconWrapper,
   StyledHeaderInner,
 };

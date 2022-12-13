@@ -62,6 +62,20 @@ const GlobalStyles = createGlobalStyle`
 
   `;
 
+const StyledButtonIconWrapper = styled.div`
+  width: ${calculateRem(30)};
+  height: ${calculateRem(30)};
+  background-color: ${({
+    theme: {
+      colors: { light },
+    },
+  }) => light};
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
 const StyledApplicationWrapper = styled.div`
   max-width: ${calculateRem(1440)};
   height: 100%;
@@ -69,4 +83,4 @@ const StyledApplicationWrapper = styled.div`
   padding: ${calculateRem(15)};
 `;
 
-export { GlobalStyles, StyledApplicationWrapper };
+export { GlobalStyles, StyledApplicationWrapper, StyledButtonIconWrapper };

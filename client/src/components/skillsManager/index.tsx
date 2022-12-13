@@ -13,44 +13,50 @@ import {
   StyledSkillsTable,
 } from './styledComponents';
 import Button from '../button';
-import { ButtonVariant, SeniorityRating } from '../../enums';
+import { ButtonVariant, FormFieldType, SeniorityRating } from '../../enums';
 import { ReactComponent as PlusIcon } from '../../assets/svg/icon-plus.svg';
+import { ReactComponent as DeleteIcon } from '../../assets/svg/icon-delete.svg';
+import Input from '../formFields/input';
 
 function SkillsManager({ control, register }: SkillsManagerProps): JSX.Element {
   const { fields, append, remove } = useFieldArray<FormInputs>({
-    control, // control props comes from useForm (optional: if you are using FormContext)
-    name: 'skills', // unique name for your Field Array
+    control,
+    name: 'skills',
   });
   return (
     <StyledSkillsManager>
       <StyledSkillsTable>
         <tbody>
-          <tr>
-            <th>Skill</th>
-            <th>Yrs Exp.</th>
-            <th>Seniority rating</th>
-          </tr>
+          {fields.length > 0 ? (
+            <tr>
+              <th>Skill</th>
+              <th>Yrs Exp.</th>
+              <th>Seniority rating</th>
+            </tr>
+          ) : null}
+
           {fields.map((field, index: number) => (
             <StyledRow key={field.id}>
               <td>
-                <input
-                  placeholder="Skill"
-                  {...register(`skills.${index}.name`, { required: true })}
+                <Input
+                  name={`skills.${index}.name`}
+                  control={control}
+                  type={FormFieldType.Text}
+                  rules={{ required: true }}
                 />
               </td>
               <td>
-                <input
-                  type="number"
-                  placeholder="Exp"
-                  {...register(`skills.${index}.yearsExp`, { required: true })}
+                <Input
+                  name={`skills.${index}.yearsExp`}
+                  control={control}
+                  type={FormFieldType.Number}
+                  rules={{ required: true }}
                 />
               </td>
               <td>
                 <select
                   placeholder="Rating"
-                  {...register(`skills.${index}.seniorityRating`, {
-                    required: true,
-                  })}
+                  {...register(`skills.${index}.seniorityRating`)}
                 >
                   <option value={SeniorityRating.Beginner}>
                     {SeniorityRating.Beginner}
@@ -65,12 +71,10 @@ function SkillsManager({ control, register }: SkillsManagerProps): JSX.Element {
                     {SeniorityRating.Senior}
                   </option>
                 </select>
-                <Button
-                  title="dlt"
-                  onClick={() => remove(index)}
-                  variant={ButtonVariant.SecondaryAction}
-                />
               </td>
+              <a onClick={() => remove(index)}>
+                <DeleteIcon />
+              </a>
             </StyledRow>
           ))}
         </tbody>
@@ -92,25 +96,3 @@ function SkillsManager({ control, register }: SkillsManagerProps): JSX.Element {
 }
 
 export default SkillsManager;
-
-// <td>
-//   <Input control={control} type={FormFieldType.Number} />
-// </td>
-// <td>
-//   <select>
-//     <option value={SeniorityRating.Beginner}>
-//       {SeniorityRating.Beginner}
-//     </option>
-//     <option value={SeniorityRating.Junior}>
-//       {SeniorityRating.Junior}
-//     </option>
-//     <option value={SeniorityRating.Senior}>
-//       {SeniorityRating.Senior}
-//     </option>
-//   </select>
-//   {/* <Button
-//   title="delete"
-//   onClick={() => onSkillDelete(index)}
-//   variant={ButtonVariant.SecondaryAction}
-// /> */}
-// </td>

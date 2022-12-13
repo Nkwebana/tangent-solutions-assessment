@@ -26,8 +26,12 @@ const StyledSkillsTable = styled.table`
   border-collapse: separate;
   th {
     text-align: left;
-    font-size: ${calculateRem(20)};
+    font-size: ${calculateRem(15)};
     font-weight: 500;
+  }
+
+  td {
+    position: relative;
   }
 
   > tr {
@@ -35,7 +39,26 @@ const StyledSkillsTable = styled.table`
   }
 `;
 
-const StyledRow = styled.tr``;
+const StyledRow = styled.tr`
+  a {
+    width: ${calculateRem(25)};
+    height: ${calculateRem(25)};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s background-color 0.1s ease-in-out;
+    cursor: pointer;
+    border-radius: 10px;
+
+    &:hover {
+      background: ${({
+        theme: {
+          colors: { secondary },
+        },
+      }) => secondary};
+    }
+  }
+`;
 
 const StyledHeadingItem = styled.p``;
 

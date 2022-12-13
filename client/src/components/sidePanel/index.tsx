@@ -5,27 +5,45 @@
  */
 
 import React, { useEffect } from 'react';
-import { useStoreState } from '../../hooks';
+import { useStoreRehydrated } from 'easy-peasy';
+import { useStoreState, useStoreActions } from '../../hooks';
 import { FormInputs, SidePanelProps } from '../../interfaces';
 import { StyledSidePanel } from './styledComponents';
 import Form from '../form';
+import { generateUniqueId } from '../../utils';
 
 function SidePanel(_props: SidePanelProps): JSX.Element {
   const {
     ui: {
       sideBar: { isOpen },
     },
+    employeeManagement: { activeEmployee },
   } = useStoreState((state) => state);
 
-  const handleFormSubmit = (values: FormInputs) => {
-    // send to BE
+  const {
+    ui: {
+      sideBar: { toggle },
+    },
+    employeeManagement: { setActiveEmployee, addEmployee },
+  } = useStoreActions((actions) => actions);
 
-    console.log({ values });
+  const isHydrated = useStoreRehydrated();
+
+  const handleFormSubmit = (employee: FormInputs) => {
+    if (!employee.id) {
+      employee.id = generateUniqueId();
+    }
+    // send to BE
+    toggle();
+    addEmployee(employee);
+    setActiveEmployee(undefined);
   };
 
   return (
     <StyledSidePanel isSidePanelOpen={isOpen}>
-      <Form onSubmit={handleFormSubmit} />
+      {isHydrated ? (
+        <Form onSubmit={handleFormSubmit} defaultValues={activeEmployee} />
+      ) : null}
     </StyledSidePanel>
   );
 }

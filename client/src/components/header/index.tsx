@@ -13,23 +13,23 @@ import {
   StyledHeader,
   StyledTitleWrapper,
   StyledActionsWrapper,
-  StyledButtonIconWrapper,
   StyledHeaderInner,
 } from './styledComponents';
+import { StyledButtonIconWrapper } from '../../theme/global-styles';
 import { ReactComponent as PlusIcon } from '../../assets/svg/icon-plus.svg';
 
 function Header({
-  numberOfApplicants,
+  numberOfEmployees,
   onFilterChanged,
   filterOptions,
-  onNewApplicant,
+  onNewEmployee,
 }: HeaderProps): JSX.Element {
   return (
     <StyledHeader>
       <StyledHeaderInner>
         <StyledTitleWrapper>
           <h1>Employee</h1>
-          <p>{`There are ${numberOfApplicants}  employees`}</p>
+          <p>{`There are ${numberOfEmployees}  employees`}</p>
         </StyledTitleWrapper>
         <StyledActionsWrapper>
           <Filter
@@ -37,7 +37,7 @@ function Header({
             filterOptions={filterOptions}
           />
           <Button
-            onClick={onNewApplicant}
+            onClick={onNewEmployee}
             title="New employee"
             variant={ButtonVariant.PrimaryAction}
             icon={

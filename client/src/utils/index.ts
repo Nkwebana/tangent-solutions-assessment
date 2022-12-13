@@ -1,6 +1,19 @@
 import axios from 'axios';
 import { ApiCall, ApiResponse } from '../interfaces';
 
+const getRandomNumber = () => {
+  return Math.floor(Math.random() * Math.floor(10));
+};
+
+const generateUniqueId = () => {
+  const firstRandomNumber = Math.floor(Math.random() * (90 - 65 + 1)) + 65;
+  const secondRandomNumber = Math.floor(Math.random() * (122 - 97 + 1)) + 97;
+  const firstLetter = String.fromCharCode(firstRandomNumber).toUpperCase();
+  const secondLetter = String.fromCharCode(secondRandomNumber).toUpperCase();
+
+  return `${firstLetter}${secondLetter}${getRandomNumber()}${getRandomNumber()}${getRandomNumber()}${getRandomNumber()}`;
+};
+
 export const handleApiError = (error: Error): ApiResponse => ({
   ok: false,
   result: null,
@@ -34,4 +47,4 @@ const makeApiCall = async (params: ApiCall): Promise<ApiResponse> => {
   }
 };
 
-export { calculateRem, makeApiCall };
+export { calculateRem, makeApiCall, generateUniqueId };

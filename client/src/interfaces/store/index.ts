@@ -1,9 +1,11 @@
 import { Action } from 'easy-peasy';
-import { Employee } from '..';
+import { IEmployee } from '..';
 
 interface IEmployeeManagement {
-  employee: Employee | undefined;
-  addEmployee: Action<IEmployeeManagement, Employee>;
+  employees: IEmployee[];
+  activeEmployee?: IEmployee;
+  setActiveEmployee: Action<IEmployeeManagement, IEmployee | undefined>;
+  addEmployee: Action<IEmployeeManagement, IEmployee>;
 }
 
 interface ISideBar {
