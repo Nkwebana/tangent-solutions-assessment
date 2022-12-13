@@ -31,6 +31,7 @@ function Employees(): JSX.Element {
       toggle();
     }
   };
+
   return (
     <StyledApplicationWrapper>
       <Header
