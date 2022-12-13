@@ -32,3 +32,7 @@ I used a easy-peasy for this because it is super lightweight and has almost zero
 ## Styling
 
 I decided to use styled-components for styling as they give me the power of decision making in js.
+
+## Delete
+
+I noticed the design didn't cater for a delete action so I added one, together with a safety mechanism to prevent accidental deletion of employees.

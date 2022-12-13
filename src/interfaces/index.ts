@@ -19,9 +19,13 @@ import { FormProps, FormInputs } from './components/form';
 import { SkillsManagerProps } from './components/skillsManager';
 import { EmployeeProps } from './components/employee';
 import { SearchInputProps } from './components/searchInput';
+import { ModalProps, StyledModalProps, ModalConfig } from './components/modal';
 
 export type {
   EmployeeProps,
+  ModalProps,
+  StyledModalProps,
+  ModalConfig,
   SkillsManagerProps,
   FormProps,
   FormField,

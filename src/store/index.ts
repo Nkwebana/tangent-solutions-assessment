@@ -1,5 +1,6 @@
 import { createStore, action, persist } from 'easy-peasy';
 import { StoreModel, IEmployee } from '../interfaces';
+import { defaultModalConfig } from './mockData';
 
 const store = createStore<StoreModel>({
   employeeManagement: persist({
@@ -20,6 +21,15 @@ const store = createStore<StoreModel>({
         state.employees[employeeToEditIndex] = employee;
       }
     }),
+    deleteEmployee: action((state, employeeId: string) => {
+      const employeeToEditIndex = state.employees.findIndex(
+        ({ id }) => id === employeeId
+      );
+
+      if (employeeToEditIndex > -1) {
+        state.employees.splice(employeeToEditIndex, 1);
+      }
+    }),
   }),
   ui: {
     sideBar: {
@@ -27,6 +37,17 @@ const store = createStore<StoreModel>({
       toggle: action((state) => {
         state.isOpen = !state.isOpen;
       }),
+    },
+    modal: {
+      showModal: action((state, config) => {
+        config.isOpen = true;
+
+        state.config = config;
+      }),
+      hideModal: action((state) => {
+        state.config = defaultModalConfig;
+      }),
+      config: defaultModalConfig,
     },
   },
 });

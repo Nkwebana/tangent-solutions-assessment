@@ -6,7 +6,7 @@
 import React, { useEffect, useState } from 'react';
 import { useStoreRehydrated } from 'easy-peasy';
 import { useStoreActions, useStoreState } from '../../hooks';
-import { FilterKeys } from '../../enums';
+import { FilterKeys, ButtonVariant } from '../../enums';
 import { filterOptions } from './mockData';
 import {
   StyledApplicationWrapper,
@@ -21,8 +21,9 @@ function Employees(): JSX.Element {
   const {
     ui: {
       sideBar: { toggle },
+      modal: { hideModal, showModal },
     },
-    employeeManagement: { setActiveEmployee },
+    employeeManagement: { setActiveEmployee, deleteEmployee },
   } = useStoreActions((actions) => actions);
   const {
     employeeManagement: { employees },
@@ -129,6 +130,24 @@ function Employees(): JSX.Element {
     toggle();
   };
 
+  const handleInvoiceDelete = (employeeID: string) =>
+    deleteEmployee(employeeID);
+
+  const handleConfirmDelete = (employeeId: string, employeeName: string) =>
+    showModal({
+      title: 'Confirm Deletion',
+      message: `Are you sure you want to delete employee: ${employeeName}? This action cannot be undone`,
+      primaryAction: () => {
+        handleInvoiceDelete(employeeId);
+        hideModal();
+      },
+      secondaryAction: () => hideModal(),
+      primaryActionVariant: ButtonVariant.DeleteAction,
+      secondaryActionVariant: ButtonVariant.SecondaryAction,
+      primaryActionTitle: 'Delete',
+      secondaryActionTitle: 'Cancel',
+    });
+
   useEffect(() => {
     setCurrentEmployees(employees);
   }, [employees]);
@@ -149,6 +168,7 @@ function Employees(): JSX.Element {
             employee={employee}
             onEmployeeSelect={onEmployeeExpand}
             employeeIndex={index}
+            onEmployeeDelete={handleConfirmDelete}
           />
         ))
       ) : (

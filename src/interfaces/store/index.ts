@@ -1,5 +1,5 @@
 import { Action } from 'easy-peasy';
-import { IEmployee } from '..';
+import { IEmployee, ModalConfig } from '..';
 
 interface IEmployeeManagement {
   employees: IEmployee[];
@@ -7,6 +7,7 @@ interface IEmployeeManagement {
   setActiveEmployee: Action<IEmployeeManagement, IEmployee | undefined>;
   addEmployee: Action<IEmployeeManagement, IEmployee>;
   editEmployee: Action<IEmployeeManagement, IEmployee>;
+  deleteEmployee: Action<IEmployeeManagement, string>;
 }
 
 interface ISideBar {
@@ -14,8 +15,15 @@ interface ISideBar {
   toggle: Action<ISideBar>;
 }
 
+interface IModal {
+  showModal: Action<IModal, ModalConfig>;
+  hideModal: Action<IModal>;
+  config: ModalConfig;
+}
+
 interface IUi {
   sideBar: ISideBar;
+  modal: IModal;
 }
 
 interface StoreModel {

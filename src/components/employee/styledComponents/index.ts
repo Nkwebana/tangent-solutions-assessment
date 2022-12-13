@@ -1,11 +1,12 @@
 import styled from 'styled-components';
-import { calculateRem } from '../../../utils';
+import { calculateRem, hexToRGB } from '../../../utils';
 const StyledEmployee = styled.a`
   background-color: ${({
     theme: {
       colors: { gray },
     },
   }) => gray};
+  flex: 2;
   border-radius: ${calculateRem(10)};
   padding: ${calculateRem(30)};
   display: flex;
@@ -43,4 +44,31 @@ const StyledCounter = styled.p`
   }) => `1px solid ${primary}`};
 `;
 
-export { StyledEmployee, StyledLabel, StyledCounter };
+const StyledEmployeeWrapper = styled.div`
+  display: flex;
+  gap: 30px;
+`;
+
+const StyledDeleteAction = styled.a`
+  width: ${calculateRem(45)};
+  height: ${calculateRem(45)};
+  margin-top: ${calculateRem(20)};
+  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: ${({
+    theme: {
+      colors: { white },
+    },
+  }) => white};
+`;
+
+export {
+  StyledEmployee,
+  StyledLabel,
+  StyledCounter,
+  StyledEmployeeWrapper,
+  StyledDeleteAction,
+};

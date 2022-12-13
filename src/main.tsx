@@ -8,6 +8,7 @@ import { theme } from './theme';
 import { store } from './store';
 import { GlobalStyles } from './theme/global-styles';
 import SidePanel from './components/sidePanel';
+import Modal from './components/modal';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
@@ -15,6 +16,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
       <ThemeProvider theme={theme}>
         <GlobalStyles />
         <SidePanel />
+        <Modal />
         <RouterProvider router={router} />
       </ThemeProvider>
     </StoreProvider>
